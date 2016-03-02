@@ -1,0 +1,20 @@
+<tr>
+  <td><%= req.start_date %></td>
+  <td><%= req.end_date %></td>
+  <td>
+    <% if req.pending? %>
+    <!--  button_to is a rails helper method: makes-->
+    <!-- <form action="<%=approve_cat_rental_request_url(req) %>" method="post">
+      <input type="submit" value="Approve">
+      OR
+      <button>Approve</button>
+    </form> -->
+
+
+        <%= button_to "Approve", approve_cat_rental_request_url(req) %>
+        <%= button_to "Deny", deny_cat_rental_request_url(req) %>
+    <% else %>
+      <%= req.status %>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= if current_user
+          current_user.username
+        else
+          'Sign Up or Log In'
+        end %>
+  </title>
+</head>
+<body>
+<h1>
+<% if current_user %>
+  <form action=" <%= session_url %> " method="POST">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Log Out" />
+  </form>
+<% else %>
+  <form action=" <%= new_session_url %> " method="GET">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <input type="submit" value="Log In" />
+  </form>
+<%  end %>
+</h1>
+<%= yield %>
+
+</body>
+</html>
